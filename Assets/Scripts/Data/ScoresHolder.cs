@@ -9,17 +9,16 @@ public class ScoresHolder : ScriptableObject
     float bestTime;
     int highScore;
     [SerializeField] GamePlayEventsHolder gamePlayEventsHolder;
-   // public UnityEvent<int> onScoreUpdated = new UnityEvent<int>();
 
     public void Init()
     {
         score = 0;
+        gamePlayEventsHolder?.SendOnGamePlayerScoredEvent(0);
     }
 
     public void UpdateScore(int score)
     {
         this.score += score;
         gamePlayEventsHolder?.SendOnGamePlayerScoredEvent(this.score);
-       // onScoreUpdated?.Invoke(this.score);
     }
 }

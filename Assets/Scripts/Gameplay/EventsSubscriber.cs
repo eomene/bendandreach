@@ -33,8 +33,11 @@ public interface ILocalOnMotivationReceived
 {
     void OnMotivationReceived(string message);
 }
-
-public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,IOnGamePlayStarted,IOnGenerateBalls,IOnPlayerScored, IEventsHolder,IOnMotivationReceived,IOnEnteredGoal
+public interface ILocalOnGamePlayPaused
+{
+    void OnGamePlayPaused(bool state);
+}
+public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,IOnGamePlayStarted,IOnGenerateBalls,IOnPlayerScored, IEventsHolder,IOnMotivationReceived,IOnEnteredGoal,IOnGamePlayPaused
 {
     GamePlayEventsHolder gamePlayEventsHolder;
     ILocalOnGenerateBalls[] onGenerateBallsEventHolders;
@@ -44,6 +47,8 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
     ILocalOnPlayerScored[] onPlayerScoredEventHolders;
     ILocalOnMotivationReceived[] onMotivationReceivedEventHolders;
     ILocalOnEnteredGoal[] onEnteredGoalEventHolders;
+    ILocalOnGamePlayPaused[] onGamePlayPausedEventHolders;
+
     /// <summary>
     /// Local events that can be assigned in the inspector, if the interfaces are not used
     /// </summary>
@@ -54,6 +59,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
     public UnityEvent onBallReleased = new UnityEvent();
     public UnityEvent<string> onMotivationReceived = new UnityEvent<string>();
     UnityEvent<GameConfigHolder.GameSide, int> onEnteredGoal = new UnityEvent<GameConfigHolder.GameSide, int>();
+    UnityEvent<bool> onGamePlayPaused = new UnityEvent<bool>();
     private void Start()
     {
         if (gamePlayEventsHolder == null)
@@ -65,6 +71,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
         onPlayerScoredEventHolders = GetComponents<ILocalOnPlayerScored>();
         onMotivationReceivedEventHolders = GetComponents<ILocalOnMotivationReceived>();
         onEnteredGoalEventHolders = GetComponents<ILocalOnEnteredGoal>();
+        onGamePlayPausedEventHolders = GetComponents<ILocalOnGamePlayPaused>();
         gamePlayEventsHolder?.SubscribeToEvent(this);
     }
 
@@ -116,5 +123,12 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
         for (int i = 0; i < onEnteredGoalEventHolders.Length; i++)
             onEnteredGoalEventHolders[i]?.OnEnteredGoal(gameSide,score);
         onEnteredGoal?.Invoke(gameSide,score);
+    }
+
+    public void OnGamePlayPaused(bool state)
+    {
+        for (int i = 0; i < onGamePlayPausedEventHolders.Length; i++)
+            onGamePlayPausedEventHolders[i]?.OnGamePlayPaused(state);
+        onGamePlayPaused?.Invoke(state);
     }
 }

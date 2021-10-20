@@ -11,6 +11,12 @@ public interface IOnGamePlayStarted
 {
     void OnGamePlayStarted();
 }
+
+public interface IOnGamePlayPaused
+{
+    void OnGamePlayPaused(bool state);
+}
+
 public interface IOnGamePlayEnded
 {
     void OnGamePlayEnded();
@@ -25,7 +31,7 @@ public interface IOnPlayerScored
 }
 public interface IOnEnteredGoal
 {
-    void OnEnteredGoal(GameConfigHolder.GameSide gameSide,int score);
+    void OnEnteredGoal(GameConfigHolder.GameSide gameSide, int score);
 }
 public interface IOnMotivationReceived
 {
@@ -44,7 +50,8 @@ public class GamePlayEventsHolder : ScriptableObject
     UnityEvent onGamePlayStarted = new UnityEvent();
     UnityEvent onGamePlayEnded = new UnityEvent();
     UnityEvent<int> onPlayerScored = new UnityEvent<int>();
-    UnityEvent<GameConfigHolder.GameSide ,int> onEnteredGoal = new UnityEvent<GameConfigHolder.GameSide,int>();
+    UnityEvent<bool> onGamePlayPaused = new UnityEvent<bool>();
+    UnityEvent<GameConfigHolder.GameSide, int> onEnteredGoal = new UnityEvent<GameConfigHolder.GameSide, int>();
     UnityEvent<string> onMotivationReceived = new UnityEvent<string>();
     UnityEvent onBallReleased = new UnityEvent();
     List<IEventsHolder> callbackHolders = new List<IEventsHolder>();
@@ -64,10 +71,13 @@ public class GamePlayEventsHolder : ScriptableObject
     {
         onPlayerScored?.Invoke(score);
     }
-
-    public void SendOnEnteredGoalEvent(GameConfigHolder.GameSide gameSide,int score)
+    public void SendOnGamePlayerPausedEvent(bool state)
     {
-        onEnteredGoal?.Invoke(gameSide,score);
+        onGamePlayPaused?.Invoke(state);
+    }
+    public void SendOnEnteredGoalEvent(GameConfigHolder.GameSide gameSide, int score)
+    {
+        onEnteredGoal?.Invoke(gameSide, score);
     }
 
     public void SendOnMotivationReceivedEvent(string message)
@@ -116,6 +126,7 @@ public class GamePlayEventsHolder : ScriptableObject
         IOnPlayerScored onPlayerScored = callbackHolder as IOnPlayerScored;
         IOnMotivationReceived onMotivationReceived = callbackHolder as IOnMotivationReceived;
         IOnEnteredGoal onEnteredGoal = callbackHolder as IOnEnteredGoal;
+        IOnGamePlayPaused onGamePlayPaused = callbackHolder as IOnGamePlayPaused;
         if (onGenerateBalls != null)
             this.onGenerateBall.AddListener(onGenerateBalls.OnGenerateBalls);
         if (onGamePlayStarted != null)
@@ -130,6 +141,8 @@ public class GamePlayEventsHolder : ScriptableObject
             this.onMotivationReceived.AddListener(onMotivationReceived.OnMotivationReceived);
         if (onEnteredGoal != null)
             this.onEnteredGoal.AddListener(onEnteredGoal.OnEnteredGoal);
+        if (onGamePlayPaused != null)
+            this.onGamePlayPaused.AddListener(onGamePlayPaused.OnGamePlayPaused);
     }
 
     public void MainUnsubscribeToEvent(IEventsHolder callbackHolder)
@@ -141,6 +154,8 @@ public class GamePlayEventsHolder : ScriptableObject
         IOnPlayerScored onPlayerScored = callbackHolder as IOnPlayerScored;
         IOnMotivationReceived onMotivationReceived = callbackHolder as IOnMotivationReceived;
         IOnEnteredGoal onEnteredGoal = callbackHolder as IOnEnteredGoal;
+        IOnGamePlayPaused onGamePlayPaused = callbackHolder as IOnGamePlayPaused;
+
         if (onGenerateBalls != null)
             this.onGenerateBall.RemoveListener(onGenerateBalls.OnGenerateBalls);
         if (onGamePlayStarted != null)
@@ -155,6 +170,8 @@ public class GamePlayEventsHolder : ScriptableObject
             this.onMotivationReceived.RemoveListener(onMotivationReceived.OnMotivationReceived);
         if (onEnteredGoal != null)
             this.onEnteredGoal.RemoveListener(onEnteredGoal.OnEnteredGoal);
+        if (onGamePlayPaused != null)
+            this.onGamePlayPaused.RemoveListener(onGamePlayPaused.OnGamePlayPaused);
     }
 
     public void Unload()

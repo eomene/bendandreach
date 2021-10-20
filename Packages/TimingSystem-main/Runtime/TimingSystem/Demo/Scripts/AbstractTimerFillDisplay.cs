@@ -15,7 +15,7 @@ public class AbstractTimerFillDisplay : MonoBehaviour, IAbstractTimerConsumer
 
     public void onTimerEnded()
     {
-     
+        image.fillAmount = 1;
     }
 
     public void onTimerUpdated(CradaptiveTimerClass timerValue)

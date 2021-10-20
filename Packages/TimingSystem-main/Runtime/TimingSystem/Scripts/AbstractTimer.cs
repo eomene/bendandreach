@@ -144,6 +144,11 @@ namespace Cradaptive.AbstractTimer
             isPaused = pause;
         }
 
+        public void PauseTimers(bool state)
+        {
+            isPaused = state;
+        }
+
         private void OnApplicationPause(bool pause)
         {
             TogglePause(pause);

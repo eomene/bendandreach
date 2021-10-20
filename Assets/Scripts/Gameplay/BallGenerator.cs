@@ -43,7 +43,7 @@ public class BallGenerator : MonoBehaviour, ITag, IDetectedObject, ILostDetected
             if (ball)
                 ball.Init(ballData);
 
-            onCombo = true;
+           // onCombo = true;
 
         }
         onCompleted?.Invoke();

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoresManager : MonoBehaviour
+public class ScoresManager : MonoBehaviour,ILocalOnGamePlayEnded
 {
     ScoresHolder scoresHolder;
 
@@ -19,4 +19,8 @@ public class ScoresManager : MonoBehaviour
         scoresHolder?.UpdateScore(score);
     }
 
+    public void OnGamePlayEnded()
+    {
+        scoresHolder.Init();
+    }
 }
