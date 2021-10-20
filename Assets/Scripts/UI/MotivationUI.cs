@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Cradaptive.AbstractTimer;
 
-public class MotivationUI : MonoBehaviour
+public class MotivationUI : UIScreen, ILocalOnMotivationReceived
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]Text motivationText;
+    AbstractTimer abstractTimer;
+
+    public override void Awake()
     {
-        
+        base.Awake();
+        abstractTimer = GetComponent<AbstractTimer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnMotivationReceived(string message)
     {
-        
+        motivationText.text = message;
+        abstractTimer.StartTickDownTimer("myMotivationTimer", "Motivation Timer", gameConfigHolder.durationOfMotivations, () =>
+        {
+            motivationText.text = "";
+        });
     }
 }

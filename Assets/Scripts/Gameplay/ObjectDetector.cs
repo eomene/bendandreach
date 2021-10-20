@@ -32,21 +32,23 @@ public class ObjectDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-      //  if (detecting) return;
-      //  detecting = true;
+
         ///interface overwrites what is set in the inspector. Ideally, this should be a choice 
         string tag = objectToDetect != null ? objectToDetect.objectTag : objectToDetectTag;
         if (other.tag.Contains(tag))
         {
             lostDetectedObject?.OnDetectedObjectLost(other.gameObject);
         }
-      //  detecting = false;
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (detecting) return;
+        detecting = true;
         string tag = objectToDetect != null ? objectToDetect.objectTag : objectToDetectTag;
         if (other.tag.Contains(tag))
             detectedObject?.OnObjectDetected(other.gameObject);
+        detecting = false;
     }
 }

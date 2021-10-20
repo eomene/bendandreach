@@ -23,7 +23,12 @@ public interface ILocalOnPlayerScored
 {
     void OnPlayerScored(int score);
 }
-public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,IOnGamePlayStarted,IOnGenerateBalls,IOnPlayerScored, IEventsHolder
+public interface ILocalOnMotivationReceived
+{
+    void OnMotivationReceived(string message);
+}
+
+public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,IOnGamePlayStarted,IOnGenerateBalls,IOnPlayerScored, IEventsHolder,IOnMotivationReceived
 {
     GamePlayEventsHolder gamePlayEventsHolder;
     ILocalOnGenerateBalls[] onGenerateBallsEventHolders;
@@ -31,6 +36,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
     ILocalOnGamePlayEnded[] onGamePlayEndedEventHolders;
     ILocalOnBallReleased[] onBallReleasedEventHolders;
     ILocalOnPlayerScored[] onPlayerScoredEventHolders;
+    ILocalOnMotivationReceived[] onMotivationReceivedEventHolders;
     /// <summary>
     /// Local events that can be assigned in the inspector, if the interfaces are not used
     /// </summary>
@@ -39,7 +45,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
     public UnityEvent onGamePlayEnded = new UnityEvent();
     public UnityEvent<int> onPlayerScored = new UnityEvent<int>();
     public UnityEvent onBallReleased = new UnityEvent();
-
+    public UnityEvent<string> onMotivationReceived = new UnityEvent<string>();
     private void Start()
     {
         if (gamePlayEventsHolder == null)
@@ -49,6 +55,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
         onGamePlayEndedEventHolders = GetComponents<ILocalOnGamePlayEnded>();
         onBallReleasedEventHolders = GetComponents<ILocalOnBallReleased>();
         onPlayerScoredEventHolders = GetComponents<ILocalOnPlayerScored>();
+        onMotivationReceivedEventHolders = GetComponents<ILocalOnMotivationReceived>();
 
         gamePlayEventsHolder?.SubscribeToEvent(this);
     }
@@ -89,5 +96,10 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
         onPlayerScored?.Invoke(score);
     }
 
-
+    public void OnMotivationReceived(string message)
+    {
+        for (int i = 0; i < onMotivationReceivedEventHolders.Length; i++)
+            onMotivationReceivedEventHolders[i]?.OnMotivationReceived(message);
+        onMotivationReceived?.Invoke(message);
+    }
 }

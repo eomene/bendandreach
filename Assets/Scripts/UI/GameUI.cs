@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameUI : MonoBehaviour
+public class GameUI : UIScreen
 {
-    ScoresHolder scoresHolder;
+
     [SerializeField] Text scoreTxt;
 
-    void Awake()
+    public override void Awake()
     {
-        if (scoresHolder == null)
-            scoresHolder = Resources.Load<ScoresHolder>("ScoresHolder");
+        base.Awake();
         scoresHolder?.onScoreUpdated.AddListener(ScoreUpdated);
     }
 

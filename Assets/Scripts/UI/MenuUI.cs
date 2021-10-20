@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuUI : MonoBehaviour
+public class MenuUI : UIScreen
 {
     public DetectorButton playGameButton;
     public DetectorButton backToMenuButton;
-    [SerializeField] GamePlayEventsHolder gamePlayEventsHolder;
 
-    private void Awake()
+
+    public override void Awake()
     {
+        base.Awake();
         playGameButton.onButtonClicked = PlayGame;
         backToMenuButton.onButtonClicked = Endgame;
         backToMenuButton.onButtonClickedUp = BackToMenu;
