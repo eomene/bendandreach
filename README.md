@@ -3,6 +3,7 @@
 ## Unity Version
 
 2021.1.21f1
+Built and tested on Oculus Quest 2, Both by sideloading from unity or running via link mode
 
 ## Inspiration
 
