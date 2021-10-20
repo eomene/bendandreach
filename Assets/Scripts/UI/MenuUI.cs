@@ -19,7 +19,7 @@ public class MenuUI : UIScreen
     public void PlayGame()
     {
         playGameButton.ToggleState(false);
-        gamePlayEventsHolder?.onGamePlayStarted?.Invoke();
+        gamePlayEventsHolder?.SendOnGamePlayStartedEvent();
     }
 
     public void ShowExitMenu()
@@ -35,6 +35,6 @@ public class MenuUI : UIScreen
 
     public void Endgame()
     {
-        gamePlayEventsHolder?.onGamePlayEnded?.Invoke();
+        gamePlayEventsHolder?.SendOnGamePlayEndedEvent();
     }
 }

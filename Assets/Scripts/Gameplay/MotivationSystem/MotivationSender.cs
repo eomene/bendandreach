@@ -15,7 +15,7 @@ public class MotivationSender : MonoBehaviour
 
     public void SendMotivation(string message)
     {
-        gamePlayEventsHolder?.onMotivationReceived?.Invoke(message);
+        gamePlayEventsHolder?.SendOnMotivationReceivedEvent(message);
     }
 
 }

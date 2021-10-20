@@ -1,6 +1,5 @@
-using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using System.Linq;
 
 [System.Serializable]
 public class BallData
@@ -9,10 +8,23 @@ public class BallData
     public int score;
     public GameObject ballGameObject;
     public Color color;
+    public string ballType;
+    public GameConfigHolder.GameSide ballSide;
 }
 
 [CreateAssetMenu(fileName = "BallDataHolder", menuName = "Create/BallDataHolder")]
 public class BallDataHolder : ScriptableObject
 {
-    public BallData[] ballDatas;
+    [SerializeField] BallData[] ballDatas;
+    BallData[] nonComboBalls => ballDatas.Where(x => x.ballType != ("Combo")).ToArray();
+
+    public BallData GetBall(bool combo)
+    {
+        BallData ballData = ballDatas[0];
+        if (combo)
+            ballData = ballDatas.FirstOrDefault(x => x.ballType.Contains("Combo"));
+        else
+            ballData = nonComboBalls[UnityEngine.Random.Range(0, nonComboBalls.Length)];
+        return ballData;
+    }
 }

@@ -17,9 +17,12 @@ MonoBehaviour:
     maxCount: 2
   - side: 0
     maxCount: 3
-  comboSecs: 3
+  comboDuration: 10
   ballTagName: Ball
   leftHandTagName: LeftHand
   rightHandTagName: RightHand
   ballDurationAfterUse: 3
   ballGeneratorButtonOffset: {x: 0, y: 2.5, z: 0}
+  timeBetweenMotivations: 5
+  durationOfMotivations: 3
+  distanceToGoalOffset: {x: 0, y: 0, z: 0}

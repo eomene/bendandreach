@@ -13,7 +13,7 @@ public class GameConfigHolder : ScriptableObject
 {
     public enum GameSide { Left, Right }
     public GameSideConfig[] gameSideConfigs;
-    public int comboSecs = 3;
+    public int comboDuration = 15;
     public string ballTagName = "Ball";
     public string leftHandTagName = "LeftHand";
     public string rightHandTagName = "RightHand";
@@ -22,6 +22,8 @@ public class GameConfigHolder : ScriptableObject
     public float timeBetweenMotivations = 5;
     public float durationOfMotivations = 2;
     public Vector3 distanceToGoalOffset;
+    public int ballGeneratorScore = 3;
+    public int ballPickupScore = 3;
 
     public int GetMaxCount(GameSide gameSide)
     {

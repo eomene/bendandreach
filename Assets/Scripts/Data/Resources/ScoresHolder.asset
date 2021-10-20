@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af0b435ebde993498ec2e5feefc4a8b, type: 3}
   m_Name: ScoresHolder
   m_EditorClassIdentifier: 
-  onScoreUpdated:
-    m_PersistentCalls:
-      m_Calls: []
+  gamePlayEventsHolder: {fileID: 11400000, guid: 7995d7ad32d72b5449d6847e20ee6080, type: 2}

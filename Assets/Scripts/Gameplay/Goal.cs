@@ -7,7 +7,9 @@ public class Goal : MonoBehaviour, ITag, IDetectedObject
 {
     [SerializeField] GameConfigHolder gameConfigHolder;
     [SerializeField] MotivationDataHolder motivationDataHolder;
-    ScoreKeeper scoreKeeper;
+    [SerializeField] GamePlayEventsHolder gamePlayEventsHolder;
+
+    ScoresManager scoreKeeper;
     AbstractTimer abstractTimer;
     MotivationSender motivationSender;
     bool canSendMotivation;
@@ -20,6 +22,7 @@ public class Goal : MonoBehaviour, ITag, IDetectedObject
         {
             scoreKeeper?.UpdateScore(ball.ballData.score);
             ball?.Unload();
+            gamePlayEventsHolder?.SendOnEnteredGoalEvent(ball.ballData.ballSide,ball.ballData.score);
             if (canSendMotivation)
             {
                 canSendMotivation = false;
@@ -39,8 +42,9 @@ public class Goal : MonoBehaviour, ITag, IDetectedObject
             gameConfigHolder = Resources.Load<GameConfigHolder>("GameConfigHolder");
         if (motivationDataHolder == null)
             motivationDataHolder = Resources.Load<MotivationDataHolder>("MotivationDataHolder");
-
-        scoreKeeper = GetComponent<ScoreKeeper>();
+        if (gamePlayEventsHolder == null)
+            gamePlayEventsHolder = Resources.Load<GamePlayEventsHolder>("GamePlayEventsHolder");
+        scoreKeeper = GetComponent<ScoresManager>();
         abstractTimer = GetComponent<AbstractTimer>();
         motivationSender = GetComponent<MotivationSender>();
         canSendMotivation = true;

@@ -17,15 +17,19 @@ MonoBehaviour:
     score: 20
     ballGameObject: {fileID: 8562120511336364327, guid: 61f68de94f5b3494096796ff43c1bba3, type: 3}
     color: {r: 0.8207547, g: 0.13550194, b: 0.13550194, a: 1}
+    ballType: Combo
   - speed: 3
-    score: 15
+    score: 5
     ballGameObject: {fileID: 8562120511336364327, guid: 61f68de94f5b3494096796ff43c1bba3, type: 3}
     color: {r: 0.2559124, g: 0.81960785, b: 0.13725488, a: 1}
+    ballType: Normal
   - speed: 3
-    score: 15
+    score: 5
     ballGameObject: {fileID: 8562120511336364327, guid: 61f68de94f5b3494096796ff43c1bba3, type: 3}
     color: {r: 0.043124944, g: 0.05660379, b: 0.04031685, a: 1}
+    ballType: Normal
   - speed: 3
-    score: 15
+    score: 5
     ballGameObject: {fileID: 8562120511336364327, guid: 61f68de94f5b3494096796ff43c1bba3, type: 3}
     color: {r: 0.7267654, g: 0.8962264, b: 0.097232126, a: 1}
+    ballType: Normal

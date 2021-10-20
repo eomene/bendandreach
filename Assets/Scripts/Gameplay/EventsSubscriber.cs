@@ -23,12 +23,18 @@ public interface ILocalOnPlayerScored
 {
     void OnPlayerScored(int score);
 }
+
+public interface ILocalOnEnteredGoal
+{
+    void OnEnteredGoal(GameConfigHolder.GameSide gameSide,int score);
+}
+
 public interface ILocalOnMotivationReceived
 {
     void OnMotivationReceived(string message);
 }
 
-public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,IOnGamePlayStarted,IOnGenerateBalls,IOnPlayerScored, IEventsHolder,IOnMotivationReceived
+public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,IOnGamePlayStarted,IOnGenerateBalls,IOnPlayerScored, IEventsHolder,IOnMotivationReceived,IOnEnteredGoal
 {
     GamePlayEventsHolder gamePlayEventsHolder;
     ILocalOnGenerateBalls[] onGenerateBallsEventHolders;
@@ -37,6 +43,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
     ILocalOnBallReleased[] onBallReleasedEventHolders;
     ILocalOnPlayerScored[] onPlayerScoredEventHolders;
     ILocalOnMotivationReceived[] onMotivationReceivedEventHolders;
+    ILocalOnEnteredGoal[] onEnteredGoalEventHolders;
     /// <summary>
     /// Local events that can be assigned in the inspector, if the interfaces are not used
     /// </summary>
@@ -46,6 +53,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
     public UnityEvent<int> onPlayerScored = new UnityEvent<int>();
     public UnityEvent onBallReleased = new UnityEvent();
     public UnityEvent<string> onMotivationReceived = new UnityEvent<string>();
+    UnityEvent<GameConfigHolder.GameSide, int> onEnteredGoal = new UnityEvent<GameConfigHolder.GameSide, int>();
     private void Start()
     {
         if (gamePlayEventsHolder == null)
@@ -56,7 +64,7 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
         onBallReleasedEventHolders = GetComponents<ILocalOnBallReleased>();
         onPlayerScoredEventHolders = GetComponents<ILocalOnPlayerScored>();
         onMotivationReceivedEventHolders = GetComponents<ILocalOnMotivationReceived>();
-
+        onEnteredGoalEventHolders = GetComponents<ILocalOnEnteredGoal>();
         gamePlayEventsHolder?.SubscribeToEvent(this);
     }
 
@@ -101,5 +109,12 @@ public class EventsSubscriber : MonoBehaviour,IOnBallReleased,IOnGamePlayEnded,I
         for (int i = 0; i < onMotivationReceivedEventHolders.Length; i++)
             onMotivationReceivedEventHolders[i]?.OnMotivationReceived(message);
         onMotivationReceived?.Invoke(message);
+    }
+
+    public void OnEnteredGoal(GameConfigHolder.GameSide gameSide, int score)
+    {
+        for (int i = 0; i < onEnteredGoalEventHolders.Length; i++)
+            onEnteredGoalEventHolders[i]?.OnEnteredGoal(gameSide,score);
+        onEnteredGoal?.Invoke(gameSide,score);
     }
 }

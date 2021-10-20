@@ -46,5 +46,6 @@ namespace Cradaptive.AbstractTimer
         /// </summary>
         public Action<float> onTimerUpdated;
 
+        public bool useCallBack = true;
     }
 }
