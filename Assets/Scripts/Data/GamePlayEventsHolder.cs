@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// This is an easy implementation for events, it allows classes to subscibe to events using interfaces and one method.
+/// This classs subscribes to the necessary events for that class based on the interfaces it implements. 
+/// This class also removes the events when unloading is called, making it safer since the classes do not need to write code for
+/// doing that. It can be easily extended to add more events support
+/// </summary>
+
 public interface IOnGenerateBalls
 {
     void OnGenerateBalls(GameConfigHolder.GameSide side, Action onComplete);

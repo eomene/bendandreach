@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// use the events to update the score text
+/// </summary>
+
 public class GameUI : UIScreen, ILocalOnPlayerScored
 {
 

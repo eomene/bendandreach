@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
+
+/// <summary>
+/// plays and stops video when it is opend or closed
+/// </summary>
 public class TutorialUI : UIScreen
 {
 

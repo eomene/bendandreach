@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// simple pause menu
+/// </summary>
 public class PauseMenuUI : UIScreen
 {
     public DetectorButton backToMenuButton;

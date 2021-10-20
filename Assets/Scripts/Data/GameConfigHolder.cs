@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Linq;
 
+/// <summary>
+/// Controls all the config of the gameplay, this should allow for modularity and progression. Since this parameters
+/// can be modified to make the game difficult or easy
+/// </summary>
+
 [System.Serializable]
 public class GameSideConfig
 {

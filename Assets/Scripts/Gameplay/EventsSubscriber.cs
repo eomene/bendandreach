@@ -1,8 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
+/// <summary>
+/// This takes the pain out of manually subscribing and unsubscribing from events in a safe way. It handles this on its
+/// own and tells all classes in the same gameobject when these events are fired via an interface. It can be attched to 
+/// multiple gameobjects in the scene, and the classes only need to implement its interfaces to get events.
+/// It also supports multiple classes
+/// </summary>
+
+
 public interface ILocalOnGenerateBalls
 {
     void OnGenerateBalls(GameConfigHolder.GameSide side, Action onComplete);

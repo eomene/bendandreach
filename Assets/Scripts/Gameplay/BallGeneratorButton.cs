@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+/// <summary>
+/// Controls either of the two big buttons on top of the player, using the detector system to know when an object enters
+/// or exits it. Then it fires the generate ball event and also adds some score to the player. Since they reached
+/// </summary>
 public class BallGeneratorButton : MonoBehaviour,IDetectedObject,ITag,ILocalOnGamePlayPaused
 {
     GamePlayEventsHolder gamePlayEventsHolder;

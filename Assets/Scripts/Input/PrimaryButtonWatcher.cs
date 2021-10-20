@@ -5,7 +5,9 @@ using UnityEngine.XR;
 
 [System.Serializable]
 public class PrimaryButtonEvent : UnityEvent<bool> { }
-
+/// <summary>
+/// Reused class from Unity doc, just an easy way to get button press https://docs.unity3d.com/Manual/xr_input.html
+/// </summary>
 public class PrimaryButtonWatcher : MonoBehaviour
 {
     public PrimaryButtonEvent primaryButtonPress;

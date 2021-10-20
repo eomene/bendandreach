@@ -6,9 +6,5 @@ using UnityEngine;
 public class ComboUI : UIScreen
 {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

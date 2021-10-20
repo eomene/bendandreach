@@ -1,6 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// Only needed to set the position of the buttons based on the config. 
+/// It implements the interface used by the positionmodifier class for its offset
+/// </summary>
 
 public class ButtonGeneratorParent : MonoBehaviour, IHMDLocationOffset
 {

@@ -1,6 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+/// <summary>
+/// An easy detection system, makes it faster for classes to detect objects without always implementing ontriggerenter.
+/// It also makes it easy for us to swap this detection to anyother method in the future without changing the other classes
+/// Everything will just work. It sends its responses via interfaces to any class that implements the interfaces
+/// You can either manually write out the tag to detect or provide it via an interface.
+/// It only supports one detection per gameobject at the moment
+/// </summary>
 public interface ITag
 {
     string objectTag { get; }

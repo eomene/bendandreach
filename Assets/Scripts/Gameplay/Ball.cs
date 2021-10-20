@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+
+/// <summary>
+/// This is attached to all balls. So it can be customised based on the data from the balldata class
+/// </summary>
 public class Ball : MonoBehaviour
 {
     XRGrabInteractable xRGrabInteractable;
@@ -17,6 +21,12 @@ public class Ball : MonoBehaviour
         gameConfigHolder = Resources.Load<GameConfigHolder>("GameConfigHolder");
     }
 
+
+    /// <summary>
+    /// Initialised the ball by configuring it based on the data received, right now I only customise color and velocity
+    /// But it can be used for others
+    /// </summary>
+    /// <param name="ballData"></param>
     public void Init(BallData ballData)
     {
         this.ballData = ballData;
@@ -34,13 +44,17 @@ public class Ball : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// When the ball passes through the goal, we might want effects or to destroy the ball. That can be done here
+    /// </summary>
     public void Unload()
     {
         //effects can also be played here
-        Invoke("DestroyGameobjecy", gameConfigHolder.ballDurationAfterUse);
+        Invoke("DestroyGameobject", gameConfigHolder.ballDurationAfterUse);
     }
 
-    public void DestroyGameobjecy()
+
+    public void DestroyGameobject()
     {
         Destroy(this.gameObject);
     }

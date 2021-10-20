@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
+/// <summary>
+/// Controls the showing of the main menu as well as the location based on the player view. Uses events to show either
+/// the main menu or exit menu
+/// </summary>
 public class MainMenuManager : MenuManagerBase, ILocalOnGamePlayEnded, ILocalOnGamePlayStarted,IHMDLocationOffset
 {
     bool isPlayingGame;
     public Vector3 offset => gameConfigHolder.menuUIOffset;
-   // public Vector3 locationOffset;
-    public override void Awake()
-    {
-        base.Awake();
-       // locationOffset = gameConfigHolder.menuUIOffset;
-    }
 
     public void OnGamePlayEnded()
     {

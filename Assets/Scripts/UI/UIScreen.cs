@@ -1,8 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// easy implementation of bolier plate code for what is necessary for a ui to be opened or closed, so code is not
+/// re written, also includes a few of the scriptable objects already
+/// </summary>
 public class UIScreen : MonoBehaviour
 {
     [SerializeField]protected GamePlayEventsHolder gamePlayEventsHolder;

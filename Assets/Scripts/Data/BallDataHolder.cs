@@ -18,6 +18,12 @@ public class BallDataHolder : ScriptableObject
     [SerializeField] BallData[] ballDatas;
     BallData[] nonComboBalls => ballDatas.Where(x => x.ballType != ("Combo")).ToArray();
 
+
+    /// <summary>
+    /// Gets a ball
+    /// </summary>
+    /// <param name="combo"></param>
+    /// <returns></returns>
     public BallData GetBall(bool combo)
     {
         BallData ballData = ballDatas[0];

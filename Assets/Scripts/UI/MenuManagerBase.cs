@@ -1,16 +1,18 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Handles easy opening and closing of ui screens using indexs in an array
+/// </summary>
 public class MenuManagerBase : MonoBehaviour
 {
     public UIScreen[] screens;
     [SerializeField] int defaultScreen = 1;
     [SerializeField] bool openDefaultOnStart;
-    [SerializeField] bool closeAllScreensOnStart  = true;
+    [SerializeField] bool closeAllScreensOnStart = true;
     protected GamePlayEventsHolder gamePlayEventsHolder;
-    [SerializeField]protected GameConfigHolder gameConfigHolder;
+    [SerializeField] protected GameConfigHolder gameConfigHolder;
     protected ScoresHolder scoresHolder;
 
     public virtual void Awake()
@@ -26,10 +28,10 @@ public class MenuManagerBase : MonoBehaviour
 
     public virtual void Start()
     {
-        if(closeAllScreensOnStart)
-        CloseAllScreens();
+        if (closeAllScreensOnStart)
+            CloseAllScreens();
         if (openDefaultOnStart)
-            OpenDefault();         
+            OpenDefault();
     }
 
     public void OpenDefault()
