@@ -8,8 +8,9 @@ public class MenuManagerBase : MonoBehaviour
     public UIScreen[] screens;
     [SerializeField] int defaultScreen = 1;
     [SerializeField] bool openDefaultOnStart;
+    [SerializeField] bool closeAllScreensOnStart  = true;
     protected GamePlayEventsHolder gamePlayEventsHolder;
-    protected GameConfigHolder gameConfigHolder;
+    [SerializeField]protected GameConfigHolder gameConfigHolder;
     protected ScoresHolder scoresHolder;
 
     public virtual void Awake()
@@ -25,6 +26,7 @@ public class MenuManagerBase : MonoBehaviour
 
     public virtual void Start()
     {
+        if(closeAllScreensOnStart)
         CloseAllScreens();
         if (openDefaultOnStart)
             OpenDefault();         

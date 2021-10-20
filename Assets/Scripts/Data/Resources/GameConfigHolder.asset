@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSideConfigs:
   - side: 1
-    maxCount: 2
+    maxCount: 1
   - side: 0
-    maxCount: 3
+    maxCount: 1
   comboDuration: 10
   ballTagName: Ball
   leftHandTagName: LeftHand
   rightHandTagName: RightHand
   ballDurationAfterUse: 3
-  ballGeneratorButtonOffset: {x: 0, y: 2.5, z: 0}
   timeBetweenMotivations: 5
   durationOfMotivations: 3
-  distanceToGoalOffset: {x: 0, y: 0, z: 0}
+  ballGeneratorScore: 3
+  ballPickupScore: 3
+  ballGeneratorButtonOffset: {x: 0, y: 3, z: 0}
+  distanceToGoalOffset: {x: -2.31, y: 4.01, z: 11.18}
+  menuUIOffset: {x: 0, y: 1.54, z: 0.94}
+  gameCanvasUIOffset: {x: -2.53, y: 5.93, z: 12.37}

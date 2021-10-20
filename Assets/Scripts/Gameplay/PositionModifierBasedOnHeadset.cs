@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
+public interface IHMDLocationOffset
+{
+    Vector3 offset { get; }
+}
+
+
 public class PositionModifierBasedOnHeadset : TrackedPoseDriver
 {
-    [SerializeField] Vector3 extraOffset;
+    IHMDLocationOffset locationOffset;
 
-   // [SerializeField] GameConfigHolder gameConfigHolder;
+    protected override void Awake()
+    {
+        base.Awake();
+        locationOffset = GetComponent<IHMDLocationOffset>();
+    }
     protected override void SetLocalTransform(Vector3 newPosition, Quaternion newRotation)
     {
-        base.SetLocalTransform(newPosition + extraOffset, newRotation);
+        base.SetLocalTransform(newPosition + locationOffset.offset, newRotation);
     }
 }

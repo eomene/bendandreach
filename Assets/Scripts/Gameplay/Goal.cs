@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goal : MonoBehaviour, ITag, IDetectedObject
+public class Goal : MonoBehaviour, ITag, IDetectedObject,IHMDLocationOffset
 {
     [SerializeField] GameConfigHolder gameConfigHolder;
-    [SerializeField] MotivationDataHolder motivationDataHolder;
-    [SerializeField] GamePlayEventsHolder gamePlayEventsHolder;
+    MotivationDataHolder motivationDataHolder;
+     GamePlayEventsHolder gamePlayEventsHolder;
 
     ScoresManager scoreKeeper;
     AbstractTimer abstractTimer;
@@ -15,6 +15,8 @@ public class Goal : MonoBehaviour, ITag, IDetectedObject
     bool canSendMotivation;
 
     public string objectTag => gameConfigHolder.ballTagName;
+
+    public Vector3 offset => gameConfigHolder.distanceToGoalOffset;
 
     public void OnObjectDetected(GameObject other)
     {

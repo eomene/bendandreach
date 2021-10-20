@@ -18,13 +18,16 @@ public class GameConfigHolder : ScriptableObject
     public string leftHandTagName = "LeftHand";
     public string rightHandTagName = "RightHand";
     public int ballDurationAfterUse = 3;
-    public Vector3 ballGeneratorButtonOffset;
+
     public float timeBetweenMotivations = 5;
     public float durationOfMotivations = 2;
-    public Vector3 distanceToGoalOffset;
+
     public int ballGeneratorScore = 3;
     public int ballPickupScore = 3;
-
+    public Vector3 ballGeneratorButtonOffset;
+    public Vector3 distanceToGoalOffset;
+    public Vector3 menuUIOffset;
+    public Vector3 gameCanvasUIOffset;
     public int GetMaxCount(GameSide gameSide)
     {
         int count = 1;

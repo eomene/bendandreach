@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIScreen : MonoBehaviour
 {
-    protected GamePlayEventsHolder gamePlayEventsHolder;
+    [SerializeField]protected GamePlayEventsHolder gamePlayEventsHolder;
     protected GameConfigHolder gameConfigHolder;
     protected ScoresHolder scoresHolder;
     CanvasGroup canvasGroup;
