@@ -7,7 +7,7 @@ Built and tested on Oculus Quest 2, Both by sideloading from unity or running vi
 
 ## Inspiration
 
-Based on the requirements, this is what I tried to replicate https://www.skimble.com/exercises/29622-bend-and-reach-how-to-do-exercise 
+Replicating https://www.skimble.com/exercises/29622-bend-and-reach-how-to-do-exercise 
 
 ## HOW TO Play
 1. Reach out to touch the play button to start game. (this was done beause touching is a more simple interaction for new VR users than the pointer)
